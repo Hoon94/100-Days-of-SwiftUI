@@ -17,9 +17,9 @@
 <div align="center">
 
 ![Mockup - GuessTheFlag](https://github.com/Hoon94/100-Days-of-SwiftUI/assets/43189761/19163976-a24e-4dd0-9435-913ecf3633c6)
-<!--
+
 ![Demo - GuessTheFlag](./_Screenshots/Demo%20-%20GuessTheFlag.gif)
--->
+
 </div>
 
 ## 📚 Resources
