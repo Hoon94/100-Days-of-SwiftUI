@@ -13,8 +13,8 @@ My solutions to Paul Hudson's [100 Days of SwiftUI](https://www.hackingwithswift
 These projects not only helped and guided me through learning Swift and SwiftUI, but also gave me the chance to tackle a few challenges on my own each time. It was a great experience and I feel more confident in my abilities now.
 
 - [Project 1 - WeSplit](/01-WeSplit/)
-<!--
 - [Project 2 - Guess the Flag](/03-Guess%20the%20Flag/)
+<!--
 - [Project 3 - Views and Modifiers](/04-Views%20and%20Modifiers/)
 - [Project 4 - BetterRest](/06-BetterRest/)
 - [Project 5 - WordScramble](/07-WordScramble/)
