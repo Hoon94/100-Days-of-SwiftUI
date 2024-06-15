@@ -9,13 +9,29 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            RadialGradient(colors: [.teal, .black], center: .top, startRadius: 20, endRadius: 300)
+            
+            Text("Prominent Title")
+                .titleStyle()
         }
-        .padding()
+        .ignoresSafeArea()
+    }
+}
+
+struct Title: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle.bold())
+            .foregroundStyle(.blue)
+            .shadow(color: .white, radius: 20)
+            .padding()
+    }
+}
+
+extension View {
+    func titleStyle() -> some View {
+        modifier(Title())
     }
 }
 
