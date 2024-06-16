@@ -33,8 +33,8 @@ The challenges were projects that I developed on my own, starting from the basic
 - [Checkpoints](/00-Checkpoint/)
 -->
 - [Challenge Day - Unit Converter](/02-Challenge%20Day/)
-<!--
 - [Milestone 1 - Rock Paper Scissor](/05-Milestone%201/)
+<!--
 - Milestone 2 - Edutainment - 🚧 In Progress
 - Milestone 3 - Habit Tracking
 - ...
