@@ -18,6 +18,10 @@ struct ContentView: View {
     @State private var currentScore = 0
     @State private var currentRound = 1
     
+    @State private var animationAmount = 0.0
+    @State private var opacityAmount = 1.0
+    @State private var scaleAmount = 1.0
+    
     let numberOfRounds = 8
     
     var body: some View {
@@ -48,10 +52,12 @@ struct ContentView: View {
                     ForEach(0..<3) { number in
                         Button {
                             flagTapped(number)
-                            
                         } label: {
                             FlagImage(country: countries[number])
                         }
+                        .rotation3DEffect(Angle(degrees: correctAnswer == number ? animationAmount : 0), axis: (x: 0, y: 1, z: 0))
+                        .opacity(correctAnswer == number ? 1 : opacityAmount)
+                        .scaleEffect(correctAnswer == number ? 1 : scaleAmount)
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -88,6 +94,12 @@ struct ContentView: View {
     }
     
     func flagTapped(_ number: Int) {
+        withAnimation {
+            animationAmount += 360
+            opacityAmount = 0.25
+            scaleAmount = 0.85
+        }
+        
         if number == correctAnswer {
             scoreTitle = "Correct"
             currentScore += 1
@@ -102,13 +114,19 @@ struct ContentView: View {
             return
         }
         
-        showingScore = true
-        currentRound += 1
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            showingScore = true
+        }
     }
     
     func askQuestion() {
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
+        currentRound += 1
+        
+        animationAmount = 0
+        opacityAmount = 1.0
+        scaleAmount = 1.0
     }
     
     func restartGame() {
@@ -117,15 +135,15 @@ struct ContentView: View {
         
         currentScore = 0
         currentRound = 1
+        
+        animationAmount = 0
+        opacityAmount = 1.0
+        scaleAmount = 1.0
     }
 }
 
 struct FlagImage: View {
     let country: String
-    
-    init(country: String) {
-        self.country = country
-    }
     
     var body: some View {
         Image(country)
