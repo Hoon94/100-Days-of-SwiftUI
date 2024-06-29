@@ -7,60 +7,20 @@
 
 import SwiftUI
 
-struct ExpenseItem: Identifiable, Codable {
-    var id = UUID()
-    let name: String
-    let type: String
-    let amount: Double
-}
-
-@Observable
-class Expenses {
-    var items = [ExpenseItem]() {
-        didSet {
-            if let encoded = try? JSONEncoder().encode(items) {
-                UserDefaults.standard.set(encoded, forKey: "Items")
-            }
-        }
-    }
-    
-    init() {
-        if let savedItems = UserDefaults.standard.data(forKey: "Items") {
-            if let decodedItems = try? JSONDecoder().decode([ExpenseItem].self, from: savedItems) {
-                items = decodedItems
-                return
-            }
-        }
-
-        items = []
-    }
-}
-
 struct ContentView: View {
     @State private var expenses = Expenses()
-    
     @State private var showingAddExpense = false
+    
+    let types = ["Business", "Personal"]
     
     var body: some View {
         NavigationStack {
             List {
-                ForEach(expenses.items) { item in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(item.name)
-                                .font(.headline)
-                            
-                            Text(item.type)
-                        }
-
-                        Spacer()
-                        
-                        Text(item.amount, format: .currency(code: "USD"))
-                    }
-                }
-                .onDelete(perform: removeItems)
+                ExpenseSectionView(title: "Business", expenses: expenses.businessItems, deleteItems: removeItems)
+                
+                ExpenseSectionView(title: "Personal", expenses: expenses.personalItems, deleteItems: removeItems)
             }
-            .navigationTitle("iExpense")
+            .navigationTitle("iExpense 💸")
             .toolbar {
                 Button("Add Expense", systemImage: "plus") {
                     showingAddExpense = true
@@ -68,6 +28,29 @@ struct ContentView: View {
             }
             .sheet(isPresented: $showingAddExpense) {
                 AddView(expenses: expenses)
+            }
+            .overlay {
+                if expenses.isEmpty {
+                    ContentUnavailableView(label: {
+                        VStack {
+                            Image(systemName: "cart")
+                                .font(.system(size: 128))
+                            
+                            Text("Your Expenses is Empty!")
+                                .font(.system(size: 22, weight: .heavy, design: .rounded))
+                                .padding()
+                        }
+                    }, description: {
+                        Text("Tap the button to add items")
+                            .font(.system(size: 16, weight: .medium, design: .rounded))
+                    }, actions: {
+                        Button("Add Expenses") {
+                            showingAddExpense = true
+                        }
+                        .font(.headline)
+                        .buttonStyle(.borderedProminent)
+                    })
+                }
             }
         }
     }
