@@ -14,9 +14,7 @@ struct ListLayout: View {
     var body: some View {
         List {
             ForEach(missions) { mission in
-                NavigationLink {
-                    MissionView(mission: mission, astronauts: astronauts)
-                } label: {
+                NavigationLink(value: mission) {
                     HStack {
                         Image(mission.image)
                             .resizable()
@@ -37,6 +35,9 @@ struct ListLayout: View {
                     }
                 }
                 .padding(.horizontal)
+                .navigationDestination(for: Mission.self) {
+                    MissionView(mission: $0, astronauts: astronauts)
+                }
                 .listRowBackground(Color.darkBackground)
                 .listRowSeparator(.hidden)
                 .listRowInsets(.init(top: 3, leading: 15, bottom: 3, trailing: 15))
