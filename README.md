@@ -20,10 +20,7 @@ These projects not only helped and guided me through learning Swift and SwiftUI,
 - [Project 6 - Animations](/08-Animations)
 - [Project 7 - iExpense](/10-iExpense/)
 - [Project 8 - Moonshot](/11-Moonshot/)
-<!--
-- Project 9 - Drawing - 🚧 In Progress
-- ...
--->
+- [Project 9 - Navigation](/12-Navigation/)
 
 ## 🏆 Challenges
 
