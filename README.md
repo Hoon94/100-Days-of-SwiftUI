@@ -32,10 +32,7 @@ The challenges were projects that I developed on my own, starting from the basic
 - [Challenge Day - Unit Converter](/02-Challenge%20Day/)
 - [Milestone 1 - Rock Paper Scissor](/05-Milestone%201/)
 - [Milestone 2 - Edutainment](/09-Milestone%202/)
-<!--
-- Milestone 3 - Habit Tracking
-- ...
--->
+- [Milestone 3 - Habit Tracking](/13-Milestone%203/)
 
 <br />
 <br />
